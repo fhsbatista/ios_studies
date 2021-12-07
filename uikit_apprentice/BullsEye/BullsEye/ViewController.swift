@@ -12,6 +12,7 @@ class ViewController: UIViewController {
     var currentValue = 0
     var targetValue = 0
     
+    // The @IBOutlet is necessary so the interface builder can see the attribute
     @IBOutlet var slider: UISlider!
     @IBOutlet var targetLabel: UILabel!
 
@@ -23,13 +24,29 @@ class ViewController: UIViewController {
     func startNewRound() {
         targetValue = Int.random(in: 1...100)
         currentValue = 50
-        targetLabel.text = targetValue
         slider.value = Float(currentValue)
+        updateLabels()
+    }
+    
+    func updateLabels() {
+        targetLabel.text = String (targetValue)
+    }
+    
+    func calculateDifference(value1: Int, value2: Int) -> Int {
+//        let difference = (value1 - value2) * -1
+//        if difference >= 0 {
+//            return difference
+//        } else {
+//            return difference * -1
+//        }
+        return abs(value1 - value2)
     }
     
 
     @IBAction func showAlert() {
-        let message = "The value of the slider is: \(currentValue) \nThe target value is: \(targetValue)"
+        let message = "The value of the slider is: \(currentValue) \n" +
+        "The target value is: \(targetValue) \n" +
+        "The difference is: \(calculateDifference(value1: currentValue, value2: targetValue))"
         let alert = UIAlertController(
             title: "Hello World",
             message: message,
