@@ -59,6 +59,7 @@ class ViewController: UIViewController {
         let title: String
         if score == 100 {
             title = "Perfect!"
+            scoreValue += 100
         } else if score >= 90 {
             title = "Almost there"
         } else if score >= 50 {
