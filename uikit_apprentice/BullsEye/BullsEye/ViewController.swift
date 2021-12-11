@@ -48,8 +48,19 @@ class ViewController: UIViewController {
         let score = 100 - difference
         let message = "You scored \(score)"
         
+        let title: String
+        if score == 100 {
+            title = "Perfect!"
+        } else if score >= 90 {
+            title = "Almost there"
+        } else if score >= 50 {
+            title = "Good job"
+        } else {
+            title = "Too far :/"
+        }
+        
         let alert = UIAlertController(
-            title: "Hello World",
+            title: title,
             message: message,
             preferredStyle: .alert
         )
