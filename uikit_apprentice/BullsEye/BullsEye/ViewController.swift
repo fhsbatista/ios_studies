@@ -77,11 +77,11 @@ class ViewController: UIViewController {
         let action = UIAlertAction(
             title: "OK",
             style: .default,
-            handler: nil
+            handler: { _ in self.startNewRound()}
         )
         alert.addAction(action)
         present(alert, animated: true, completion: nil)
-        startNewRound()
+        
     }
     
     @IBAction func sliderMoved(_ slider: UISlider) {
