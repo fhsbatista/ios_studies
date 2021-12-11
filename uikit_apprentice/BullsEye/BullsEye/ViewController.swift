@@ -11,10 +11,14 @@ class ViewController: UIViewController {
     
     var currentValue = 0
     var targetValue = 0
+    var scoreValue = 0
+    var roundValue = 0
     
     // The @IBOutlet is necessary so the interface builder can see the attribute
     @IBOutlet var slider: UISlider!
     @IBOutlet var targetLabel: UILabel!
+    @IBOutlet var scoreLabel: UILabel!
+    @IBOutlet var roundLabel: UILabel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +26,7 @@ class ViewController: UIViewController {
     }
     
     func startNewRound() {
+        roundValue += 1
         targetValue = Int.random(in: 1...100)
         currentValue = 50
         slider.value = Float(currentValue)
@@ -30,6 +35,8 @@ class ViewController: UIViewController {
     
     func updateLabels() {
         targetLabel.text = String (targetValue)
+        scoreLabel.text = String (scoreValue)
+        roundLabel.text = String (roundValue)
     }
     
     func calculateDifference(value1: Int, value2: Int) -> Int {
@@ -46,6 +53,7 @@ class ViewController: UIViewController {
     @IBAction func showAlert() {
         let difference = abs(targetValue - currentValue)
         let score = 100 - difference
+        scoreValue += score
         let message = "You scored \(score)"
         
         let title: String
